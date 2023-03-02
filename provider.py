@@ -1,4 +1,4 @@
-from commonfate_provider import provider, args, resources
+from commonfate_provider import provider, target, access
 from google.oauth2 import service_account
 import googleapiclient.discovery
 import base64
@@ -22,9 +22,7 @@ class Provider(provider.Provider):
         secret=True,
     )
 
-    def __init__(self, config_loader={}):
-        super().__init__(config_loader)
-
+    def setup(self):
         # decode and load the JSON credentials from the supplied base64 format
         credentials_json = base64.b64decode(self.credentials_base64.get()).decode(
             "utf-8"
@@ -42,17 +40,18 @@ class Provider(provider.Provider):
         )
 
 
-class Args(args.Args):
-    group_id = args.String(title="Group")
+@access.target(kind="Group")
+class GroupTarget:
+    group = target.String(title="Group ID")
 
 
-@provider.grant()
-def grant(p: Provider, subject, args: Args) -> provider.GrantResult:
+@access.grant()
+def grant(p: Provider, subject, args: GroupTarget) -> access.GrantResult:
     # https://googleapis.github.io/google-api-python-client/docs/dyn/admin_directory_v1.members.html#insert
     res = (
         p.directory_v1.members()
         .insert(
-            groupKey=args.group_id,
+            groupKey=args.group,
             body={"email": subject},
         )
         .execute()
@@ -60,9 +59,9 @@ def grant(p: Provider, subject, args: Args) -> provider.GrantResult:
     print("created group member", "id", res.get("id"))
 
 
-@provider.revoke()
-def revoke(p: Provider, subject, args: Args):
+@access.revoke()
+def revoke(p: Provider, subject, args: GroupTarget):
     p.directory_v1.members().delete(
-        groupKey=args.group_id,
+        groupKey=args.group,
         memberKey=subject,
     ).execute()
