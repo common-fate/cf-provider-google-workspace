@@ -48,7 +48,7 @@ Provide the email of a Google Workspace administrator. If you like, you can crea
 
 _Used as `credentials_base64`_
 
-The below instructions have been taken from [Google's documentation on creating a Service Account](https://developers.google.com/workspace/guides/create-credentials#service-account).
+The below instructions have been taken from [Google's documentation on creating a Service Account](https://developers.google.com/workspace/guides/create-credentials#service-account). **Note that these credentials must be base64-encoded (see the instructions at the end for an example of how to encode credentials)**
 
 The service account requires domain-wide delegation in order to manage group membership. Only the Google Workspace access provider will have access to these credentials (not Common Fate, nor any users using Common Fate). Make sure to keep the service account credentials safe and delete any copies from your computer after deploying this Access Provider.
 
@@ -103,6 +103,13 @@ In the "Client ID" field, paste the client ID you copied in step 5.
 In the "OAuth Scopes" field, enter a comma-delimited list of the scopes required by your application. This is the same set of scopes you defined when configuring the OAuth consent screen.
 
 Click Authorize.
+
+Finally, base64-encode the credentials. You can use the following CLI commands:
+
+```bash
+read GOOGLE_WORKSPACE_CREDENTIALS # paste the service account credentials you downloaded earlier here
+echo $GOOGLE_WORKSPACE_CREDENTIALS | base64
+```
 
 ### 2. Deploy the Access Provider
 
