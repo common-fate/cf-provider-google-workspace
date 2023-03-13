@@ -1,0 +1,4 @@
+name = "google-workspace"
+publisher = "common-fate"
+version = "v0.1.0"
+language = "python3.9"

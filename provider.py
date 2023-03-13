@@ -12,13 +12,13 @@ SCOPES = [
 
 
 class Provider(provider.Provider):
-    customer_id = provider.String(usage="Google Workspace customer ID")
+    customer_id = provider.String(description="Google Workspace customer ID")
     admin_email = provider.String(
-        usage="The email address of a Google Workspace directory administrator"
+        description="The email address of a Google Workspace directory administrator"
     )
     # to avoid any issues with multiline config variables, just take this as a Base64 encoded string.
     credentials_base64 = provider.String(
-        usage="Google service account credentials in Base64-encoded JSON format",
+        description="Google service account credentials in Base64-encoded JSON format",
         secret=True,
     )
 
