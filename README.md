@@ -119,4 +119,4 @@ To deploy this Access Provider, open a terminal window and assume an AWS role wi
 cf provider deploy
 ```
 
-and select the `common-fate/cloudwatch-log-groups` Provider when prompted.
+and select the `common-fate/google-workspace` Provider when prompted.
