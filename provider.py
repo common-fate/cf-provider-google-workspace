@@ -1,4 +1,4 @@
-from commonfate_provider import provider, target, access
+from commonfate_provider import provider
 from google.oauth2 import service_account
 import googleapiclient.discovery
 import base64
@@ -38,31 +38,3 @@ class Provider(provider.Provider):
         self.directory_v1 = googleapiclient.discovery.build(
             "admin", "directory_v1", credentials=delegated_credentials
         )
-
-
-@access.target(kind="Group")
-class GroupTarget:
-    group = target.String(title="Group ID")
-
-
-@access.grant()
-def grant(p: Provider, subject, args: GroupTarget) -> access.GrantResult:
-    # https://googleapis.github.io/google-api-python-client/docs/dyn/admin_directory_v1.members.html#insert
-    res = (
-        p.directory_v1.members()
-        .insert(
-            groupKey=args.group,
-            body={"email": subject},
-        )
-        .execute()
-    )
-
-    print("created group member", "id", res.get("id"))
-
-
-@access.revoke()
-def revoke(p: Provider, subject, args: GroupTarget):
-    p.directory_v1.members().delete(
-        groupKey=args.group,
-        memberKey=subject,
-    ).execute()
