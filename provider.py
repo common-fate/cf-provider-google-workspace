@@ -56,6 +56,7 @@ def grant(p: Provider, subject, args: GroupTarget) -> access.GrantResult:
         )
         .execute()
     )
+
     print("created group member", "id", res.get("id"))
 
 
