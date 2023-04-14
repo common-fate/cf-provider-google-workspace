@@ -2,3 +2,7 @@ name = "google-workspace"
 publisher = "common-fate"
 version = "v0.1.1"
 language = "python3.9"
+[meta]
+  icon = "google"
+  displayName = "Google Workspace"
+  source = "https://github.com/common-fate/cf-provider-google-workspace"
