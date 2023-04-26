@@ -19,7 +19,7 @@ To use this Access Provider you'll need to have [deployed Common Fate](https://d
 
 You will also need AWS credentials with the ability to deploy CloudFormation templates.
 
-### 1. Generate credentials
+## 1. Generate credentials
 
 Before configuring the Access Provider, you'll need to create some credentials in Google Workspace:
 
