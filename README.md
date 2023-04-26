@@ -9,11 +9,11 @@
 </p>
 <br/>
 
-## Getting started
+# Getting started
 
 The Google Workspace Access Provider provisions a temporary Google Workspace Group assignment. You can use this in conjunction with SAML applications to allow users to request elevated access to SaaS applications.
 
-## Prerequisites
+# Prerequisites
 
 To use this Access Provider you'll need to have [deployed Common Fate](https://docs.commonfate.io/common-fate/next/deploying-common-fate/deploying-common-fate) and [downloaded the `cf` CLI](https://docs.commonfate.io/common-fate/next/providers/setup).
 
@@ -123,7 +123,7 @@ base64 -i <in-file> -o <outfile>
 Enable the use of the Admin SDK by visiting this [link](https://console.cloud.google.com/apis/library/admin.googleapis.com) and clicking Enable.
 
 
-### 2. Deploy the Access Provider
+## 2. Deploy the Access Provider
 
 To deploy this Access Provider, open a terminal window and assume an AWS role with access to deploy CloudFormation resources in the Common Fate account. Then, run:
 
