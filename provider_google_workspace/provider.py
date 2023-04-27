@@ -1,4 +1,4 @@
-from commonfate_provider import provider
+import provider
 from google.oauth2 import service_account
 import googleapiclient.discovery
 import base64

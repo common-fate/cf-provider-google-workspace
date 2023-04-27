@@ -1,4 +1,4 @@
-from commonfate_provider import target, access
+from provider import target, access
 from .provider import Provider
 from .resources import Group
 

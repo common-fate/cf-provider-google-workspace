@@ -1,6 +1,6 @@
 import typing
 from .provider import Provider
-from commonfate_provider import resources, tasks
+from provider import resources, tasks
 
 
 class Group(resources.Resource):
