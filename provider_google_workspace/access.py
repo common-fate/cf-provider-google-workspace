@@ -1,6 +1,6 @@
-from commonfate_provider import target, access
-from .provider import Provider
-from .resources import Group
+from provider import target, access
+from provider_google_workspace.provider import Provider
+from provider_google_workspace.resources import Group
 
 
 @access.target(kind="Group")
